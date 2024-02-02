@@ -115,3 +115,7 @@ else:
 
 logger = logging.getLogger('text-generation-webui')
 logger.setLevel(logging.DEBUG)
+# add output to file
+fh = logging.FileHandler('tg-webui.log')
+fh.setLevel(logging.DEBUG)
+logger.addHandler(fh)

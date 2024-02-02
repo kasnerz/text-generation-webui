@@ -168,6 +168,8 @@
   instruction_template: 'Alpaca'
 .*llama(-?)(2|v2).*chat:
   instruction_template: 'Llama-v2'
+.*LLaMA-2-7B-32K.*:
+  instruction_template: 'Llama-v2-32k'
 .*newhope:
   instruction_template: 'NewHope'
 .*stablebeluga2:
@@ -178,6 +180,8 @@
   instruction_template: 'Llama-v2'
 .*mistral.*instruct:
   instruction_template: 'Mistral'
+.*zephyr:
+  instruction_template: 'Zephyr'
 .*mistral.*openorca:
   instruction_template: 'ChatML'
 .*(WizardCoder-Python-34B-V1.0|Phind-CodeLlama-34B-v2|CodeBooga-34B-v0.1):

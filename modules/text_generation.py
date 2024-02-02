@@ -62,6 +62,7 @@ def _generate_reply(question, state, stopping_strings=None, is_chat=False, escap
 
     if shared.args.verbose:
         print(f'\n\n{question}\n--------------------\n')
+        logger.info(f'\n\n{question}\n--------------------\n')
 
     shared.stop_everything = False
     clear_torch_cache()
@@ -272,6 +273,7 @@ def apply_stopping_strings(reply, all_stop_strings):
 
 
 def generate_reply_HF(question, original_question, seed, state, stopping_strings=None, is_chat=False):
+
     generate_params = {}
     for k in ['max_new_tokens', 'do_sample', 'temperature', 'top_p', 'typical_p', 'repetition_penalty', 'additive_repetition_penalty', 'repetition_penalty_range', 'encoder_repetition_penalty', 'top_k', 'min_length', 'no_repeat_ngram_size', 'num_beams', 'penalty_alpha', 'length_penalty', 'early_stopping', 'tfs', 'top_a', 'mirostat_mode', 'mirostat_tau', 'mirostat_eta', 'guidance_scale']:
         generate_params[k] = state[k]
@@ -367,6 +369,7 @@ def generate_reply_HF(question, original_question, seed, state, stopping_strings
         original_tokens = len(original_input_ids[0])
         new_tokens = len(output) - (original_tokens if not shared.is_seq2seq else 0)
         print(f'Output generated in {(t1-t0):.2f} seconds ({new_tokens/(t1-t0):.2f} tokens/s, {new_tokens} tokens, context {original_tokens}, seed {seed})')
+        logger.info(f'Output generated in {(t1-t0):.2f} seconds ({new_tokens/(t1-t0):.2f} tokens/s, {new_tokens} tokens, context {original_tokens}, seed {seed})')
         return
 
 
@@ -396,4 +399,5 @@ def generate_reply_custom(question, original_question, seed, state, stopping_str
         original_tokens = len(encode(original_question)[0])
         new_tokens = len(encode(original_question + reply)[0]) - original_tokens
         print(f'Output generated in {(t1-t0):.2f} seconds ({new_tokens/(t1-t0):.2f} tokens/s, {new_tokens} tokens, context {original_tokens}, seed {seed})')
+        logger.info(f'Output generated in {(t1-t0):.2f} seconds ({new_tokens/(t1-t0):.2f} tokens/s, {new_tokens} tokens, context {original_tokens}, seed {seed})')
         return

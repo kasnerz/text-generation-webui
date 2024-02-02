@@ -7,7 +7,6 @@ import yaml
 
 from modules import shared
 
-
 with open(Path(__file__).resolve().parent / '../css/NotoSans/stylesheet.css', 'r') as f:
     css = f.read()
 with open(Path(__file__).resolve().parent / '../css/main.css', 'r') as f:
